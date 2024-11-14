@@ -16,8 +16,15 @@ router.get("/", async (req, res) => {
 
 // Create New User
 router.post("/", async (req, res) => {
-  const { name, mobileNumber, email, gender, photo } = req.body;
-  const newUser = new User({ name, mobileNumber, email, gender, photo });
+  const { name, mobileNumber, email, gender, photo, countryCode } = req.body;
+  const newUser = new User({
+    name,
+    mobileNumber,
+    email,
+    gender,
+    photo,
+    countryCode, // Include countryCode in user creation
+  });
 
   try {
     const savedUser = await newUser.save();
@@ -40,18 +47,14 @@ router.get("/:id", async (req, res) => {
 
 // Update User by ID
 router.put("/:id", async (req, res) => {
-  try {
-    const { name, mobileNumber, email, gender, photo } = req.body;
-    const user = await User.findByIdAndUpdate(
-      req.params.id,
-      { name, mobileNumber, email, gender, photo },
-      { new: true }
-    );
-    if (!user) return res.status(404).json({ message: "User not found" });
-    res.json(user);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
+  const { name, mobileNumber, email, gender, photo, countryCode } = req.body;
+  const user = await User.findByIdAndUpdate(
+    req.params.id,
+    { name, mobileNumber, email, gender, photo, countryCode }, // Include countryCode in the update
+    { new: true }
+  );
+  if (!user) return res.status(404).json({ message: "User not found" });
+  res.json(user);
 });
 
 // Delete User by ID

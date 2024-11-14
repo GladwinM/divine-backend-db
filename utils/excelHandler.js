@@ -9,8 +9,8 @@ export const parseExcel = async (filePath) => {
 
     worksheet.eachRow((row, rowNumber) => {
         if (rowNumber >= 3) { // Start from row 3 to skip any headers above
-            const question = row.getCell('D').value;
-            let answer = row.getCell('E').value;
+            const question = row.getCell('A').value;
+            let answer = row.getCell('B').value;
 
             // If answer is richText (check for the richText property)
             if (answer && answer.richText) {

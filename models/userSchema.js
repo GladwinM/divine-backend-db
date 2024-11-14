@@ -1,12 +1,13 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
-    name: { type: String, required: true },
-    mobileNumber: { type: String, required: true },
-    email: { type: String, required: true, unique: true },
-    gender: { type: String, enum: ['Male', 'Female', 'Other'], required: true },
-    photo: { type: String } // File path or URL
+  name: { type: String, required: true },
+  mobileNumber: { type: String, required: true },
+  countryCode: { type: String, required: true }, // Adding the countryCode field
+  email: { type: String, required: true, unique: true },
+  gender: { type: String, enum: ["Male", "Female", "Other"], required: true },
+  photo: { type: String }, // File path or URL
 });
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model("User", userSchema);
 export default User;
