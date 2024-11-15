@@ -6,6 +6,7 @@ import qaRoutes from "./routes/qaRoutes.js";
 import calendarRoutes from "./routes/calendarRoutes.js";
 import bannerRoutes from "./routes/bannerRoutes.js";
 import cors from "cors";
+import updateRoutes from "./routes/updateRoutes.js";
 const app = express();
 
 app.use(express.json());
@@ -29,6 +30,7 @@ app.use("/api/notifications", notificationRoutes);
 app.use("/api/qas", qaRoutes);
 app.use("/api/calendars", calendarRoutes);
 app.use("/api/banners", bannerRoutes);
+app.use("/api/updates", updateRoutes);
 
 const PORT = process.env.PORT || 9000;
 app.listen(PORT, () => {

@@ -21,7 +21,7 @@ const upload = multer({
   limits: { fileSize: 5 * 1024 * 1024 }, // Limit: 5MB
 });
 
-// const upload = multer({ dest: "uploads/" });
+
 router.get("/",getAllQA)
 router.post("/upload-excel", upload.single("file"), uploadExcel);
 router.post("/:id/question", addQuestion);
